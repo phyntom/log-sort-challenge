@@ -7,7 +7,6 @@ const MinHeap = require('./min-heap');
 module.exports = (logSources, printer) => {
    if (!logSources.length || logSources.length > 0) {
       printLogsSynchronous(logSources, printer);
-      printer.done();
    }
    return console.log('Sync sort complete.');
 };
@@ -34,6 +33,8 @@ function printLogsSynchronous(logSources, printer) {
       const nextRecord = logSources[sourceIndex].pop();
       if (nextRecord) {
          heap.insert({ sourceIndex, record: nextRecord });
+      } else {
+         printer.done();
       }
    }
 }
