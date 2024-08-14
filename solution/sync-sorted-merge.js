@@ -19,6 +19,7 @@ function printLogsSynchronous(logSources, printer) {
       // Since the source record are poped chronologically, we have guarantee that
       // records will come already sorted from the source
       const record = logSources[i].pop();
+      console.log(record);
       if (record) {
          heap.insert({ sourceIndex: i, record }); // each record is marked with its source id
       }

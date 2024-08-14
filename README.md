@@ -3,31 +3,63 @@
 # Seso Engineering | Challenge: Log Sorting
 
 <br>
+<br>
 
-## Instructions
+## Choice of Datastructure
 
-We have a number of [**log sources**](https://github.com/sesolabor/glowing-octo-disco/blob/master/lib/log-source.js). Each log source contains N log entries. Each entry is a javascript object with a timestamp and message. We don't know the number of log entries each source contains - however - we do know that the entries within each source are sorted 🕒 **chronologically** 🕒.
+Although many datastructure can be used for this solution, I found that MinHeap can lead to more efficient solution even in case of million sources.
 
-### The Objectives:
+## Space Complexity: O(n)
 
-1. **_Drain all of the log sources_** for both the synchronous and asynchronous solutions.
-   - [Synchronous](https://github.com/sesolabor/glowing-octo-disco/blob/31313e303c53cebb96fa02f3aab473dd011e1d16/lib/log-source.js#L37)
-   - [Asynchronous](https://github.com/sesolabor/glowing-octo-disco/blob/31313e303c53cebb96fa02f3aab473dd011e1d16/lib/log-source.js#L45)
-1. Print all of the entries, across all of the sources, in chronological order.
-   - We don't need to store the log entries, just print them to stdout.
-1. Do this _efficiently_. There are time and space complexities afoot!
+The space complexity for this solution is O(n) where N is the number of log sources as we only keep one entry from each source in memory at time.
 
-We expect candidates to spend 1-3 hours on this exercise.
+## Time Complexity: O(M log N):
 
-**We want to see you flex your CS muscles!!! Use the appropriate data structures to satisfy the time and space complexities inherent to the problem!!!**
+The time complexity for this solution is O(M log N). M represent the number of entries in all sources and N represent the number of sources we are processing from. Note that each push or insertion take Log N time, which is significant effecient even if we do that M times.
 
-## Pointers & Callouts
+## Large dataset handling
 
-- We don't know how many logs each source contains. A source could contain millions of entries and be exabytes in size! In other words, reading the entirety of a log source into memory won't work well.
-- Log sources could contain logs from last year, from yesterday, even from 100 years ago. We won't know the timeframe of a log source until we start looking.
-- Consider what would happen when asked to merge 1 million log sources. Where might bottlenecks arise?
+Priority Queues are known to be efficient in priority management because of the efficiency of insertion and removal operation.Since we can load the whole dataset in memory as stated in the instructions, the best way is to operate on subset of data and process them immediately.
 
-There are two parts of the challenge which you'll see when diving into things. You can get started by running `npm start`.
+```javascript
+   // since I want to print the log in chronological
+   // order I will always take the minimum
+   // which will take the root node.
+   extractMin() {
+      if (this.heap.length === 0) return null;
+      if (this.heap.length === 1) return this.heap.pop();
+
+      const min = this.heap[0];
+      this.heap[0] = this.heap.pop();
+      this.percolateDown(0);
+      return min;
+   }
+```
+
+## Memory footprint
+
+The solution leverages the use of MinHeap which is memory efficient as well and it only keeps one record from each source in memory at a time.
+
+## Asynchronous Operation Handling:
+
+THe solution handle async operation properly by using:
+
+-  `async/await` and also leverate `popAsync` method provided by the `log-source.js`.
+-  It asynchronously pops the first record from each log source and checks if the record exists. If the record exists, it pushes it in the heap along with its index.
+-  All those operation are done concurrently for all log sources using `Promise.all`
+-  After the heap has been initialized, it enters a loop that will extract the minimum record from heap and print it using the provided print method from printer `printer.print(record)`
+-  The asynchronously pops the followig record from the same source indicated by the sourceIndex created earlier
+-  If a new record is retrieved it is pushed back into the heap
+-  The loop will continue until the heap becomes empty. Hence when all entries from the sources have been exhausted
+-  The function wraps everything in try/catch block to handle any errors that might occur during the program execution
+
+## Solution Limitations
+
+The main limitations of this solution may be the inital load of one record from earch source into memory. If we are dealing with large number of log sources, the initial process can lead to a use of lot memory. However in most practical scenarios, this should be cause any issue and it is a necessay trade-off to make sure that we maintain chronological order across all the log sources.
+
+## Alternatives solution
+
+Other solutions that can bring improvement could be when writting on disc by leveraging an external merge source and write each log source in temporary file. Then on the next step Merge sorted temporary files and finally clean up the temporary files.In this case we start writing an sorting immediately and we can even handle large dataset in case memory is an issue.
 
 ## Submitting
 
