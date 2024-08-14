@@ -14,7 +14,9 @@ module.exports = (logSources, printer) => {
          .catch(reject);
    });
 };
+
 // method to print the logs using async methods
+
 async function printMergeLogsAsync(logSources, printer) {
    // start by creating min heap
    const heap = new MinHeap();

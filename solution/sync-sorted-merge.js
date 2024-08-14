@@ -6,20 +6,19 @@ const MinHeap = require('./min-heap');
 
 module.exports = (logSources, printer) => {
    if (!logSources.length || logSources.length > 0) {
-      printLogsSynchronous(logSources, printer);
+      printMergeLogsSync(logSources, printer);
       printer.done();
    }
    return console.log('Sync sort complete.');
 };
 
-function printLogsSynchronous(logSources, printer) {
+function printMergeLogsSync(logSources, printer) {
    const heap = new MinHeap();
    // Initialize the heap with the first entry from each source
    for (let i = 0; i < logSources.length; i++) {
       // Since the source record are poped chronologically, we have guarantee that
       // records will come already sorted from the source
       const record = logSources[i].pop();
-      console.log(record);
       if (record) {
          heap.insert({ sourceIndex: i, record }); // each record is marked with its source id
       }

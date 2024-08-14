@@ -9,6 +9,22 @@
 
 Although many datastructure can be used for this solution, I found that MinHeap can lead to more efficient solution even in case of million sources.
 
+## Details of the Solution
+
+1. Created a MinHeap datastructure to effciently keep track of earliest log entry base on the date across all the source
+2. Initialization of the heap:
+   -  Asynchronously and synchronosy poping the first entry on each log source available for asynchronous it is done concurrently
+   -  If We get the record, it is going to be inserted in the heap with a created sourceIndex that will be used later when we replace
+      the record from another record from the same log source
+   -  For sync we leverage `pop()` and async `popAsync()`
+   -  Once the heap is initialized we loop into it and extract the minimum record based on the date
+   -  When the record is extracted from the heap it is replace by another one from the same source
+   -  We continue until the heap is empty meaning we have covered all the log sources
+   -  The heap implementation is in separate module file `min-heap.js`
+   -  Two method are created for each implementation `printMergeLogsSync` for sync and `printMergeLogsAsync`
+   -  In those two methods that is where all the processing happens but they differ from the use of `asyn/await` and `popAsync` as well as
+      concurrent processing
+
 ## Space Complexity: O(n)
 
 The space complexity for this solution is O(n) where N is the number of log sources as we only keep one entry from each source in memory at time.
