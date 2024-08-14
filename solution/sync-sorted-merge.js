@@ -36,3 +36,5 @@ function printMergeLogsSync(logSources, printer) {
       }
    }
 }
+
+module.exports.printMergeLogsSync = printMergeLogsSync;
