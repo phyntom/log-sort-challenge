@@ -61,10 +61,9 @@ The solution leverages the use of MinHeap which is memory efficient as well and 
 THe solution handle async operation properly by using:
 
 -  `async/await` and also leverate `popAsync` method provided by the `log-source.js`.
--  I have also introduced `printAsync` function to ensure printing handle async printing operation
 -  To process logs asynchronously, I added a function called `printMergeLogsAsync` which does two things:
 -  Fetch logs from each source concurrently and push all the fetched promises into array
--  To address the issue that may arise after printing, I'm fetching the next log after poping one to avoid waiting the printing process `fetchPromises.push(fetchLogs(sourceIndex))`.
+-  Pre-Fetching: To address the issue that may arise after printing, I'm fetching the next log after poping one to avoid waiting the printing process `fetchPromises.push(fetchLogs(sourceIndex))`.
 -  Source exhaustion : `fetchLogs` function resolve the promise when a source is exhausted and removed fetcehd promises `fetchPromises.splice(sourceIndex,1)`
 -  Concurrency: The function initiates fetch operations for all sources concurrently and doesn't wait for each fetch to complete before printing.
 -  Non-blocking: I introduced `await Promise.race(fetchPromises)` since we need to wait to have at least one promise to process when the heap is empty, which is necessary to ensure we have logs to process.
