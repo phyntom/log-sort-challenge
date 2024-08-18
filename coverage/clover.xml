@@ -1,103 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1723677918366" clover="3.2.0">
-  <project timestamp="1723677918366" name="All files">
-    <metrics statements="80" coveredstatements="78" conditionals="38" coveredconditionals="34" methods="16" coveredmethods="16" elements="134" coveredelements="128" complexity="0" loc="80" ncloc="80" packages="2" files="4" classes="4"/>
+<coverage generated="1723985472114" clover="3.2.0">
+  <project timestamp="1723985472114" name="All files">
+    <metrics statements="95" coveredstatements="79" conditionals="44" coveredconditionals="34" methods="19" coveredmethods="16" elements="158" coveredelements="129" complexity="0" loc="95" ncloc="95" packages="2" files="4" classes="4"/>
     <package name="lib">
-      <metrics statements="34" coveredstatements="32" conditionals="14" coveredconditionals="12" methods="8" coveredmethods="8"/>
+      <metrics statements="48" coveredstatements="32" conditionals="20" coveredconditionals="12" methods="11" coveredmethods="8"/>
       <file name="log-source.js" path="/Users/aimable/Tuts/glowing-octo-disco/lib/log-source.js">
         <metrics statements="15" coveredstatements="15" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="16" count="1005" type="stmt"/>
-        <line num="17" count="1005" type="stmt"/>
-        <line num="24" count="3699" type="stmt"/>
-        <line num="35" count="3696" type="stmt"/>
-        <line num="36" count="3696" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="1004" type="stmt"/>
-        <line num="39" count="3696" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="1007" type="stmt"/>
+        <line num="17" count="1007" type="stmt"/>
+        <line num="24" count="4679" type="stmt"/>
+        <line num="35" count="4676" type="stmt"/>
+        <line num="36" count="4676" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1006" type="stmt"/>
+        <line num="39" count="4676" type="cond" truecount="2" falsecount="0"/>
         <line num="43" count="3" type="stmt"/>
         <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="45" count="1" type="stmt"/>
         <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="printer.js" path="/Users/aimable/Tuts/glowing-octo-disco/lib/printer.js">
-        <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="3"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-        <line num="12" count="2690" type="cond" truecount="1" falsecount="1"/>
+        <metrics statements="33" coveredstatements="17" conditionals="12" coveredconditionals="4" methods="6" coveredmethods="3"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="12" count="3668" type="cond" truecount="1" falsecount="1"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="2690" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="2690" type="stmt"/>
+        <line num="15" count="3668" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="3668" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
-        <line num="20" count="2690" type="stmt"/>
-        <line num="21" count="2690" type="stmt"/>
-        <line num="22" count="2690" type="cond" truecount="2" falsecount="0"/>
-        <line num="23" count="3" type="stmt"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="31" count="3" type="stmt"/>
-        <line num="32" count="3" type="stmt"/>
-        <line num="33" count="3" type="stmt"/>
+        <line num="20" count="3668" type="stmt"/>
+        <line num="21" count="3668" type="stmt"/>
+        <line num="22" count="3668" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+        <line num="55" count="4" type="stmt"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="58" count="4" type="stmt"/>
       </file>
     </package>
     <package name="solution">
-      <metrics statements="46" coveredstatements="46" conditionals="24" coveredconditionals="22" methods="8" coveredmethods="8"/>
+      <metrics statements="47" coveredstatements="47" conditionals="24" coveredconditionals="22" methods="8" coveredmethods="8"/>
       <file name="min-heap.js" path="/Users/aimable/Tuts/glowing-octo-disco/solution/min-heap.js">
         <metrics statements="28" coveredstatements="28" conditionals="16" coveredconditionals="15" methods="6" coveredmethods="6"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="10" count="2690" type="stmt"/>
-        <line num="11" count="2690" type="stmt"/>
-        <line num="16" count="2690" type="cond" truecount="1" falsecount="1"/>
-        <line num="17" count="2690" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="2397" type="stmt"/>
-        <line num="20" count="2397" type="stmt"/>
-        <line num="21" count="2397" type="stmt"/>
-        <line num="22" count="2397" type="stmt"/>
-        <line num="27" count="2690" type="stmt"/>
-        <line num="28" count="3772" type="stmt"/>
-        <line num="29" count="3772" type="cond" truecount="2" falsecount="0"/>
-        <line num="31" count="1376" type="stmt"/>
-        <line num="32" count="1376" type="stmt"/>
-        <line num="33" count="1376" type="stmt"/>
-        <line num="38" count="2397" type="stmt"/>
-        <line num="39" count="17585" type="stmt"/>
-        <line num="40" count="17585" type="stmt"/>
-        <line num="41" count="17585" type="stmt"/>
-        <line num="43" count="17585" type="cond" truecount="2" falsecount="0"/>
-        <line num="47" count="14485" type="stmt"/>
-        <line num="49" count="17585" type="cond" truecount="2" falsecount="0"/>
-        <line num="53" count="6855" type="stmt"/>
-        <line num="56" count="17585" type="cond" truecount="2" falsecount="0"/>
-        <line num="58" count="15188" type="stmt"/>
-        <line num="59" count="15188" type="stmt"/>
-        <line num="64" count="2693" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="10" count="3668" type="stmt"/>
+        <line num="11" count="3668" type="stmt"/>
+        <line num="16" count="3668" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="3668" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="3378" type="stmt"/>
+        <line num="20" count="3378" type="stmt"/>
+        <line num="21" count="3378" type="stmt"/>
+        <line num="22" count="3378" type="stmt"/>
+        <line num="27" count="3668" type="stmt"/>
+        <line num="28" count="5054" type="stmt"/>
+        <line num="29" count="5054" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1679" type="stmt"/>
+        <line num="32" count="1679" type="stmt"/>
+        <line num="33" count="1679" type="stmt"/>
+        <line num="38" count="3378" type="stmt"/>
+        <line num="39" count="26354" type="stmt"/>
+        <line num="40" count="26354" type="stmt"/>
+        <line num="41" count="26354" type="stmt"/>
+        <line num="43" count="26354" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="21943" type="stmt"/>
+        <line num="49" count="26354" type="cond" truecount="2" falsecount="0"/>
+        <line num="53" count="10844" type="stmt"/>
+        <line num="56" count="26354" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="22976" type="stmt"/>
+        <line num="59" count="22976" type="stmt"/>
+        <line num="64" count="3672" type="stmt"/>
       </file>
       <file name="sync-sorted-merge.js" path="/Users/aimable/Tuts/glowing-octo-disco/solution/sync-sorted-merge.js">
-        <metrics statements="18" coveredstatements="18" conditionals="8" coveredconditionals="7" methods="2" coveredmethods="2"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="3" type="cond" truecount="3" falsecount="1"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
-        <line num="21" count="1004" type="stmt"/>
-        <line num="22" count="1004" type="cond" truecount="2" falsecount="0"/>
-        <line num="23" count="1003" type="stmt"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="30" count="2690" type="stmt"/>
-        <line num="31" count="2690" type="stmt"/>
-        <line num="33" count="2690" type="stmt"/>
-        <line num="34" count="2690" type="cond" truecount="2" falsecount="0"/>
-        <line num="35" count="1687" type="stmt"/>
+        <metrics statements="19" coveredstatements="19" conditionals="8" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="4" type="cond" truecount="3" falsecount="1"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="21" count="1006" type="stmt"/>
+        <line num="22" count="1006" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1005" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="30" count="3668" type="stmt"/>
+        <line num="31" count="3668" type="stmt"/>
+        <line num="33" count="3668" type="stmt"/>
+        <line num="34" count="3668" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="2663" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
       </file>
     </package>
   </project>

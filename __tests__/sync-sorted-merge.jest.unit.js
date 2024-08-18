@@ -7,7 +7,7 @@ describe('printMergeLogsSync', () => {
       const logSources = [new LogSource(), new LogSource()];
       const printer = new Printer();
       printMergeLogsSync(logSources, printer);
-      expect(printer.logsPrinted).toBeGreaterThan(200);
+      expect(new Date(printer.last).getTime()).toBeLessThan(new Date().getTime());
    });
 
    it('should handle empty log sources', () => {

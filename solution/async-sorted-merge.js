@@ -1,47 +1,73 @@
 'use strict';
 
+const LogSource = require('../lib/log-source');
 const MinHeap = require('./min-heap');
 
 // Print all entries, across all of the *async* sources, in chronological order.
 
-module.exports = (logSources, printer) => {
-   return new Promise(async (resolve, reject) => {
-      await printMergeLogsAsync(logSources, printer)
-         .then(() => {
-            console.log('Async sort complete.');
-            resolve();
-         })
-         .catch(reject);
-   });
+module.exports = async (logSources, printer) => {
+   try {
+      const promise = await printMergeLogsAsync(logSources, printer);
+      printer.done();
+      console.log('Async sort complete.');
+   } catch (err) {
+      console.log(err);
+   }
 };
-
-// method to print the logs using async methods
+/**
+ * function to print log asynchronously
+ * @param {*} logSources
+ * @param {*} printer
+ */
 
 async function printMergeLogsAsync(logSources, printer) {
-   // start by creating min heap
    const heap = new MinHeap();
+   const sourceCount = logSources.length;
+   let fetchPromises = [];
    try {
-      await Promise.all(
-         await logSources.map(async (source, idx) => {
-            const record = await source.popAsync();
-            if (record) {
-               heap.insert({ sourceIndex: idx, record });
+      // start fetching logs from each source concurrently
+      for (let index = 0; index < sourceCount; index++) {
+         fetchPromises.push(await fetchLogs(index));
+      }
+
+      // concurrently fetch logs and push them to the heap
+      function fetchLogs(sourceIndex) {
+         return new Promise(async (resolve, reject) => {
+            try {
+               while (true) {
+                  const record = await logSources[sourceIndex].popAsync();
+                  if (record) {
+                     heap.insert({ sourceIndex, record });
+                     fetchPromises.push(fetchLogs(sourceIndex));
+                     resolve({ success: true, message: 'Log inserted successfully' });
+                  } else {
+                     fetchPromises.splice(sourceIndex, 1);
+                     resolve({ success: true, message: 'Source exhausted' });
+                     break;
+                  }
+               }
+            } catch (error) {
+               reject({ success: false, message: 'An error occurred', error });
             }
-         })
-      );
-      while (heap.size() > 0) {
-         const { sourceIndex, record } = heap.extractMin();
-         printer.print(record);
-         // Get the next entry from the same source
-         const nextRecord = await logSources[sourceIndex].popAsync();
-         if (nextRecord) {
-            heap.insert({ sourceIndex, record: nextRecord });
-         } else {
-            printer.done();
-            break;
+         });
+      }
+
+      // continuously extract the min log from the heap and print
+      while (fetchPromises.length > 0 || heap.size() > 0) {
+         // wait for at least one fetch to complete if heap is empty
+         if (heap.size() === 0) {
+            await Promise.race(fetchPromises);
          }
+         if (heap.size() > 0) {
+            const { sourceIndex, record } = heap.extractMin();
+            printer.print(record);
+         }
+         // remove resolved fetch promises
+         fetchPromises = fetchPromises.filter((p) => p.status === 'pending');
       }
    } catch (err) {
       console.error(err);
    }
 }
+
+module.exports.printMergeLogsAsync = printMergeLogsAsync;

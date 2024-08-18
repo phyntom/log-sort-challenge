@@ -61,17 +61,63 @@ The solution leverages the use of MinHeap which is memory efficient as well and 
 THe solution handle async operation properly by using:
 
 -  `async/await` and also leverate `popAsync` method provided by the `log-source.js`.
--  It asynchronously pops the first record from each log source and checks if the record exists. If the record exists, it pushes it in the heap along with its index.
--  All those operation are done concurrently for all log sources using `Promise.all`
--  After the heap has been initialized, it enters a loop that will extract the minimum record from heap and print it using the provided print method from printer `printer.print(record)`
--  The asynchronously pops the followig record from the same source indicated by the sourceIndex created earlier
--  If a new record is retrieved it is pushed back into the heap
--  The loop will continue until the heap becomes empty. Hence when all entries from the sources have been exhausted
--  The function wraps everything in try/catch block to handle any errors that might occur during the program execution
+-  I have also introduced `printAsync` function to ensure printing handle async printing operation
+-  To process logs asynchronously, I added a function called `printMergeLogsAsync` which does two things:
+-  Fetch logs from each source concurrently and push all the fetched promises into array
+-  To address the issue that may arise after printing, I'm fetching the next log after poping one to avoid waiting the printing process `fetchPromises.push(fetchLogs(sourceIndex))`.
+-  Source exhaustion : `fetchLogs` function resolve the promise when a source is exhausted and removed fetcehd promises `fetchPromises.splice(sourceIndex,1)`
+-  Concurrency: The function initiates fetch operations for all sources concurrently and doesn't wait for each fetch to complete before printing.
+-  Non-blocking: I introduced `await Promise.race(fetchPromises)` since we need to wait to have at least one promise to process when the heap is empty, which is necessary to ensure we have logs to process.
+-  Continuous fetching: After printing a log, it immediately starts fetching the next log from that source without waiting
+-  Clean up : At the end we need to clean up the fetchPromises that have resolved
 
 ## Solution Limitations
 
 The main limitations of this solution may be the inital load of one record from earch source into memory. If we are dealing with large number of log sources, the initial process can lead to a use of lot memory. However in most practical scenarios, this should be cause any issue and it is a necessay trade-off to make sure that we maintain chronological order across all the log sources.
+
+## Async Operation
+
+### On 5K Sources
+
+```text
+***********************************
+Logs printed: 600975
+Time taken (s): 17.349
+Logs/s: 34640.32509078333
+***********************************
+```
+
+### On 1K Sources
+
+```text
+***********************************
+Logs printed: 120213
+Time taken (s): 3.454
+Logs/s: 34803.99536768963
+***********************************
+```
+
+## Sync Operation
+
+### On 5K Sources
+
+```text
+***********************************
+Logs printed: 598420
+Time taken (s): 17.983
+Logs/s: 33276.98381805038
+***********************************
+```
+
+#### On 1K Sources
+
+```text
+***********************************
+Logs printed:            2865
+Time taken (s):          0.104
+Logs/s:                  27548.076923076926
+***********************************
+```
 
 ## Alternatives solution
 
