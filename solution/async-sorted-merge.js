@@ -1,6 +1,5 @@
 'use strict';
 
-const LogSource = require('../lib/log-source');
 const MinHeap = require('./min-heap');
 
 // Print all entries, across all of the *async* sources, in chronological order.
@@ -30,7 +29,8 @@ async function printMergeLogsAsync(logSources, printer) {
          fetchPromises.push(await fetchLogs(index));
       }
 
-      // concurrently fetch logs and push them to the heap
+      // concurrently fetch logs and push them to the heap and also continusly fetch promises
+      // intp fetchPromises array
       function fetchLogs(sourceIndex) {
          return new Promise(async (resolve, reject) => {
             try {
@@ -51,7 +51,6 @@ async function printMergeLogsAsync(logSources, printer) {
             }
          });
       }
-
       // continuously extract the min log from the heap and print
       while (fetchPromises.length > 0 || heap.size() > 0) {
          // wait for at least one fetch to complete if heap is empty
