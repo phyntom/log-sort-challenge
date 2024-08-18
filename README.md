@@ -74,6 +74,8 @@ THe solution handle async operation properly by using:
 
 The main limitations of this solution may be the inital load of one record from earch source into memory. If we are dealing with large number of log sources, the initial process can lead to a use of lot memory. However in most practical scenarios, this should be cause any issue and it is a necessay trade-off to make sure that we maintain chronological order across all the log sources.
 
+Another bottleneck in the async solution provided is that `await Promise.race(fetchPromises)` which is necessary in case the heap is empty. We want to fill the
+
 ## Async Operation
 
 ### On 5K Sources
